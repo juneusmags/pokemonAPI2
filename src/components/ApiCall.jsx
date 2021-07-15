@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
-
+import axios from 'axios';
 
 const ApiCall = props =>{
     const [pokemon, setPokemon] = useState({});
 
     const listpokemon = () => { 
         
-        fetch("https://pokeapi.co/api/v2/pokemon?limit=100&offset=200")
-                .then (res =>{
-                    return res.json()
-                })
+        axios.get("https://pokeapi.co/api/v2/pokemon?limit=100&offset=200")
+                // .then (res =>{
+                //     return res.json()
+                // })
                 .then(res => {
                     console.log(res.results)
-                    setPokemon(res.results)
+                    setPokemon(res.data.results)
                 })
                 .catch(err => {
                     console.log(err)
